@@ -1,4 +1,4 @@
-# Lidioma Inventario API
+# Inventario API
 
 Sistema backend robusto para la gestión de inventario académico, desarrollado con Django REST Framework y PostgreSQL.
 
