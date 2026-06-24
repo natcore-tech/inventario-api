@@ -1,0 +1,29 @@
+# Entorno virtual
+.venv/
+venv/
+env/
+ENV/
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Configuraciones de IDEs (VS Code, PyCharm)
+.vscode/
+.idea/
+.DS_Store
+
+# Base de datos local (nunca subas esto)
+db.sqlite3
+db.sqlite3-journal
+
+# Archivos de entorno (donde guardas tus claves secretas)
+.env
+.env.local
+
+# Archivos de log
+*.log
+
+# Archivos de medios (si subes imágenes/archivos a tu servidor)
+media/

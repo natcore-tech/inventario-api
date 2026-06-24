@@ -1,0 +1,1 @@
+# inventario/views/__init__.py
