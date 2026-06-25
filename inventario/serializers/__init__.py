@@ -11,3 +11,4 @@ from .producto  import SerializerResumenProducto, SerializerProducto
 from .movimiento_inventario import SerializerMovimientoInventario
 from .proveedor import SerializerProveedor
 from .orden_compra import SerializerOrdenCompra
+from .cliente import SerializerCliente
