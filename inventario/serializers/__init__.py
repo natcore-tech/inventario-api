@@ -14,3 +14,7 @@ from .orden_compra import SerializerOrdenCompra
 from .marca import MarcaSerializer
 from .unidad_medida import UnidadMedidaSerializer
 from .ubicacion_fisica import UbicacionFisicaSerializer
+from .bodega import BodegaSerializer
+from .stock_bodega import StockBodegaSerializer
+from .traslado_bodega_detalle import TrasladoBodegaDetalleSerializer
+from .traslado_bodega import TrasladoBodegaSerializer
