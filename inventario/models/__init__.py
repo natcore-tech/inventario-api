@@ -5,5 +5,7 @@ from .movimiento_inventario import MovimientoInventario
 from .proveedor import Proveedor
 from .orden_compra import OrdenCompra
 from inventario.models.ajuste_inventario import AjusteInventario
+from inventario.models.numero_serie import NumeroSerie
 
-__all__ = ['Categoria', 'Producto', 'MovimientoInventario', 'Proveedor', 'OrdenCompra','AjusteInventario']
+__all__ = ['Categoria', 'Producto', 'MovimientoInventario', 'Proveedor', 'OrdenCompra','AjusteInventario',
+           'NumeroSerie']

@@ -13,6 +13,8 @@ from inventario.serializers.auth import CustomTokenView
 from inventario.views.proveedor import ProveedorViewSet 
 from inventario.views.orden_compra import OrdenCompraViewSet  
 from inventario.views.ajuste_inventario import AjusteInventarioViewSet
+from inventario.views.numero_serie import NumeroSerieViewSet
+
 
 router = DefaultRouter()
 router.register('users', UserViewSet, basename='user')
@@ -22,7 +24,7 @@ router.register('movimientos', MovimientoInventarioViewSet, basename='movimiento
 router.register('proveedores', ProveedorViewSet, basename='proveedor')  
 router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')  
 router.register(r'ajustes-inventario', AjusteInventarioViewSet)
-
+router.register(r'numeros-serie', NumeroSerieViewSet)
 urlpatterns = [
     path('health/', health_check),
     path('auth/register/', RegisterView.as_view()),
