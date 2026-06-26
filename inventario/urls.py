@@ -1,4 +1,3 @@
-# inventario/urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
@@ -11,15 +10,21 @@ from inventario.views.producto import ConjuntoVistasProducto
 from inventario.views.movimiento_inventario import MovimientoInventarioViewSet 
 from inventario.serializers.auth import CustomTokenView
 from inventario.views.proveedor import ProveedorViewSet 
-from inventario.views.orden_compra import OrdenCompraViewSet  
+from inventario.views.orden_compra import OrdenCompraViewSet
+from inventario.views.marca import MarcaViewSet
+from inventario.views.unidad_medida import UnidadMedidaViewSet
+from inventario.views.ubicacion_fisica import UbicacionFisicaViewSet
 
 router = DefaultRouter()
 router.register('users', UserViewSet, basename='user')
 router.register('categorias', CategoriaViewSet, basename='categoria')
 router.register('productos', ConjuntoVistasProducto, basename='producto')
-router.register('movimientos', MovimientoInventarioViewSet, basename='movimiento-inventario')  
-router.register('proveedores', ProveedorViewSet, basename='proveedor')  
-router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')  
+router.register('movimientos', MovimientoInventarioViewSet, basename='movimiento-inventario') 
+router.register('proveedores', ProveedorViewSet, basename='proveedor') 
+router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')
+router.register('marcas', MarcaViewSet, basename='marca')
+router.register('unidades-medida', UnidadMedidaViewSet, basename='unidad-medida')
+router.register('ubicaciones', UbicacionFisicaViewSet, basename='ubicacion-fisica')
 
 urlpatterns = [
     path('health/', health_check),
