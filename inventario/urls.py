@@ -15,6 +15,7 @@ from inventario.views.orden_compra import OrdenCompraViewSet
 from inventario.views.ajuste_inventario import AjusteInventarioViewSet
 from inventario.views.numero_serie import NumeroSerieViewSet
 from inventario.views.alerta_stock import AlertaStockMinimoViewSet
+from inventario.views.devolucion import DevolucionClienteViewSet
 
 
 router = DefaultRouter()
@@ -27,6 +28,7 @@ router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')
 router.register(r'ajustes-inventario', AjusteInventarioViewSet)
 router.register(r'numeros-serie', NumeroSerieViewSet)
 router.register(r'alertas-stock', AlertaStockMinimoViewSet)
+router.register(r'devoluciones', DevolucionClienteViewSet)
 
 urlpatterns = [
     path('health/', health_check),

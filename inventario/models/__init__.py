@@ -7,6 +7,7 @@ from .orden_compra import OrdenCompra
 from inventario.models.ajuste_inventario import AjusteInventario
 from inventario.models.numero_serie import NumeroSerie
 from inventario.models.alerta_stock import AlertaStockMinimo
+from .devolucion import DevolucionCliente
 
 __all__ = ['Categoria', 'Producto', 'MovimientoInventario', 'Proveedor', 'OrdenCompra','AjusteInventario',
-           'NumeroSerie', 'AlertaStockMinimo']
+           'NumeroSerie', 'AlertaStockMinimo', 'DevolucionCliente']
