@@ -4,5 +4,8 @@ from .producto import Producto
 from .movimiento_inventario import MovimientoInventario
 from .proveedor import Proveedor
 from .orden_compra import OrdenCompra, OrdenCompraDetalle
+from inventario.models.cotizacion import Cotizacion, CotizacionDetalle
 
-__all__ = ['Categoria', 'Producto', 'MovimientoInventario', 'Proveedor', 'OrdenCompra', 'OrdenCompraDetalle']
+__all__ = ['Categoria', 'Producto', 'MovimientoInventario', 
+           'Proveedor', 'OrdenCompra', 'OrdenCompraDetalle',
+           'Cotizacion', 'CotizacionDetalle']

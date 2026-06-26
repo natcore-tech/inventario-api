@@ -12,6 +12,8 @@ from inventario.views.movimiento_inventario import MovimientoInventarioViewSet
 from inventario.serializers.auth import CustomTokenView
 from inventario.views.proveedor import ProveedorViewSet 
 from inventario.views.orden_compra import OrdenCompraViewSet  
+from rest_framework.routers import DefaultRouter
+from inventario.views.cotizacion import CotizacionViewSet
 
 router = DefaultRouter()
 router.register('users', UserViewSet, basename='user')
@@ -19,7 +21,8 @@ router.register('categorias', CategoriaViewSet, basename='categoria')
 router.register('productos', ConjuntoVistasProducto, basename='producto')
 router.register('movimientos', MovimientoInventarioViewSet, basename='movimiento-inventario')  
 router.register('proveedores', ProveedorViewSet, basename='proveedor')  
-router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')  
+router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')
+router.register(r'cotizaciones', CotizacionViewSet)  
 
 urlpatterns = [
     path('health/', health_check),
