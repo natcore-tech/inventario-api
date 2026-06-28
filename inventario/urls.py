@@ -5,6 +5,7 @@ from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
 
 from inventario.views.health import health_check
 from inventario.views.auth import RegisterView, LogoutView
+from inventario.views.turno_caja import TurnoCajaViewSet
 from inventario.views.user import UserViewSet
 from inventario.views.categoria import CategoriaViewSet
 from inventario.views.producto import ConjuntoVistasProducto
@@ -19,7 +20,8 @@ router.register('categorias', CategoriaViewSet, basename='categoria')
 router.register('productos', ConjuntoVistasProducto, basename='producto')
 router.register('movimientos', MovimientoInventarioViewSet, basename='movimiento-inventario')  
 router.register('proveedores', ProveedorViewSet, basename='proveedor')  
-router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')  
+router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')
+router.register('turnos-caja', TurnoCajaViewSet, basename='turno-caja')  
 
 urlpatterns = [
     path('health/', health_check),
