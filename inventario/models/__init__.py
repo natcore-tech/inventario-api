@@ -5,6 +5,10 @@ from .movimiento_inventario import MovimientoInventario
 from .proveedor import Proveedor
 from .orden_compra import OrdenCompra, OrdenCompraDetalle
 from .orden_compra import OrdenCompra
+from .ajuste_inventario import 
+from .numero_serie import 
+from .alerta_stock import 
+from .devolucion import DevolucionCliente
 from .turno_caja import TurnoCaja
 from .venta import Venta, VentaDetalle, PagoVenta
 from .cliente import Cliente
@@ -19,7 +23,10 @@ from .traslado_bodega_detalle import TrasladoBodegaDetalle
 __all__ = ['Categoria', 'Producto', 'MovimientoInventario', 
            'Proveedor', 'OrdenCompra', 'OrdenCompraDetalle',
            'Cotizacion', 'CotizacionDetalle',
-           'TurnoCaja', 'Venta', 'VentaDetalle', 'PagoVenta']
+           'TurnoCaja', 'Venta', 'VentaDetalle', 'PagoVenta',
+           'AjusteInventario', 'NumeroSerie', 'AlertaStockMinimo',
+           'DevolucionCliente', 'Bodega', 'StockBodega', 
+           'TrasladoBodega', 'TrasladoBodegaDetalle']
 
 
 

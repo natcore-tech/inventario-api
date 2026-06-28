@@ -1,8 +1,5 @@
-# inventario/models/producto.py
 from django.db import models
 from django.core.validators import MinValueValidator
-
-
 
 class Producto(models.Model):
     categoria = models.ForeignKey(
@@ -20,8 +17,8 @@ class Producto(models.Model):
         null=True,
         verbose_name='Descripción'
     )
+    # Se eliminó 'max_length', no aplica en DecimalField
     precio = models.DecimalField(
-        max_length=10,
         max_digits=10,
         decimal_places=2,
         validators=[MinValueValidator(0.01)],
@@ -48,4 +45,4 @@ class Producto(models.Model):
         ordering = ['nombre']
 
     def __str__(self):
-        return f"{self.nombre} (${self.precio})"
+        return f"{self.nombre} - Stock: {self.stock}"
