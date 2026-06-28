@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Avg, Max, Min, Sum, Count
-
+from rest_framework import permissions
 from inventario.models import Producto
 from inventario.serializers.producto import SerializerProducto, SerializerResumenProducto
 from inventario.permissions import EsStaffOSoloLectura
@@ -17,7 +17,7 @@ from inventario.pagination import StandardPagination
 class ConjuntoVistasProducto(viewsets.ModelViewSet):
     queryset           = Producto.objects.select_related('categoria').all()
     serializer_class   = SerializerProducto
-    permission_classes = [EsStaffOSoloLectura]
+    permission_classes = [permissions.IsAuthenticated]
     pagination_class   = StandardPagination
     filter_backends    = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class    = FiltroProducto

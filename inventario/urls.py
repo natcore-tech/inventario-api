@@ -12,7 +12,8 @@ from inventario.views.producto import ConjuntoVistasProducto
 from inventario.views.movimiento_inventario import MovimientoInventarioViewSet 
 from inventario.serializers.auth import CustomTokenView
 from inventario.views.proveedor import ProveedorViewSet 
-from inventario.views.orden_compra import OrdenCompraViewSet
+from inventario.views.orden_compra import OrdenCompraViewSet  
+from inventario.views.cotizacion import CotizacionViewSet
 from inventario.views.venta import VentaViewSet  
 from inventario.views.marca import MarcaViewSet
 from inventario.views.unidad_medida import UnidadMedidaViewSet
@@ -28,6 +29,7 @@ router.register('productos', ConjuntoVistasProducto, basename='producto')
 router.register('movimientos', MovimientoInventarioViewSet, basename='movimiento-inventario')  
 router.register('proveedores', ProveedorViewSet, basename='proveedor')  
 router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')
+router.register('cotizaciones', CotizacionViewSet)  
 router.register('turnos-caja', TurnoCajaViewSet, basename='turno-caja')  
 router.register('ventas', VentaViewSet, basename='venta')
 router.register('clientes', ClienteViewSet, basename='cliente')  

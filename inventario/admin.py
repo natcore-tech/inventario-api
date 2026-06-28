@@ -1,4 +1,3 @@
-# inventario/admin.py
 from django.contrib import admin
 from inventario.models import (
     Categoria, 
@@ -6,10 +5,11 @@ from inventario.models import (
     MovimientoInventario, 
     Proveedor, 
     OrdenCompra,
+    OrdenCompraDetalle,  
     TurnoCaja,
     Venta,
     VentaDetalle,
-    PagoVenta
+    PagoVenta,
     Cliente  
 )
 
@@ -17,9 +17,9 @@ from inventario.models import (
 
 @admin.register(Categoria)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display        = ['id', 'nombre', 'slug', 'activa', 'creado_en']
-    list_filter         = ['activa']
-    search_fields       = ['nombre']
+    list_display          = ['id', 'nombre', 'slug', 'activa', 'creado_en']
+    list_filter           = ['activa']
+    search_fields         = ['nombre']
     prepopulated_fields = {'slug': ('nombre',)}
 
 
@@ -47,6 +47,10 @@ class ProveedorAdmin(admin.ModelAdmin):
     search_fields = ['nombre', 'ruc']
     list_editable = ['es_activo']
 
+class OrdenCompraDetalleInline(admin.TabularInline):
+    model = OrdenCompraDetalle
+    extra = 1  
+
 @admin.register(OrdenCompra)
 class OrdenCompraAdmin(admin.ModelAdmin):
     list_display  = ['id', 'codigo_orden', 'proveedor', 'estado', 'total_estimado', 'usuario', 'creado_en']
@@ -55,6 +59,7 @@ class OrdenCompraAdmin(admin.ModelAdmin):
     list_editable = ['estado']
     ordering      = ['-creado_en']
     
+    inlines = [OrdenCompraDetalleInline]
     filter_horizontal = ['productos']
 
 @admin.register(TurnoCaja)
@@ -81,7 +86,7 @@ class VentaAdmin(admin.ModelAdmin):
     list_display  = ['id', 'cliente', 'cajero', 'turno', 'fecha_emision', 'total', 'estado']
     list_filter   = ['estado', 'fecha_emision', 'cajero']
     search_fields = ['cliente__nombres', 'cliente__identificacion', 'id']
-    inlines       = [VentaDetalleInline, PagoVentaInline] # <--- Aquí se amarran las sub-tablas
+    inlines       = [VentaDetalleInline, PagoVentaInline]
     readonly_fields = ['subtotal', 'iva', 'total', 'fecha_emision', 'cajero', 'turno']
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
