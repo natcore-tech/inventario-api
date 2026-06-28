@@ -5,6 +5,7 @@ from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
 from inventario.views.cliente import ClienteViewSet
 from inventario.views.health import health_check
 from inventario.views.auth import RegisterView, LogoutView
+from inventario.views.turno_caja import TurnoCajaViewSet
 from inventario.views.user import UserViewSet
 from inventario.views.categoria import CategoriaViewSet
 from inventario.views.producto import ConjuntoVistasProducto
@@ -12,6 +13,7 @@ from inventario.views.movimiento_inventario import MovimientoInventarioViewSet
 from inventario.serializers.auth import CustomTokenView
 from inventario.views.proveedor import ProveedorViewSet 
 from inventario.views.orden_compra import OrdenCompraViewSet
+from inventario.views.venta import VentaViewSet  
 from inventario.views.marca import MarcaViewSet
 from inventario.views.unidad_medida import UnidadMedidaViewSet
 from inventario.views.ubicacion_fisica import UbicacionFisicaViewSet
@@ -26,6 +28,8 @@ router.register('productos', ConjuntoVistasProducto, basename='producto')
 router.register('movimientos', MovimientoInventarioViewSet, basename='movimiento-inventario')  
 router.register('proveedores', ProveedorViewSet, basename='proveedor')  
 router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')
+router.register('turnos-caja', TurnoCajaViewSet, basename='turno-caja')  
+router.register('ventas', VentaViewSet, basename='venta')
 router.register('clientes', ClienteViewSet, basename='cliente')  
 router.register('marcas', MarcaViewSet, basename='marca')
 router.register('unidades-medida', UnidadMedidaViewSet, basename='unidad-medida')

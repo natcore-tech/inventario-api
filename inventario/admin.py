@@ -6,8 +6,13 @@ from inventario.models import (
     MovimientoInventario, 
     Proveedor, 
     OrdenCompra,
+    TurnoCaja,
+    Venta,
+    VentaDetalle,
+    PagoVenta
     Cliente  
 )
+
 
 
 @admin.register(Categoria)
@@ -52,6 +57,32 @@ class OrdenCompraAdmin(admin.ModelAdmin):
     
     filter_horizontal = ['productos']
 
+@admin.register(TurnoCaja)
+class TurnoCajaAdmin(admin.ModelAdmin):
+    list_display = ['id', 'cajero', 'fecha_apertura', 'fecha_cierre', 'monto_apertura', 'estado']
+    list_filter  = ['estado', 'cajero']
+    readonly_fields = ['fecha_apertura', 'fecha_cierre']
+
+class VentaDetalleInline(admin.TabularInline):
+    model = VentaDetalle
+    extra = 0
+    readonly_fields = ['producto', 'cantidad', 'precio_unitario_venta', 'subtotal_linea']
+    can_delete = False
+
+class PagoVentaInline(admin.TabularInline):
+    model = PagoVenta
+    extra = 0
+    readonly_fields = ['metodo_pago', 'monto', 'fecha_pago']
+    can_delete = False
+
+
+@admin.register(Venta)
+class VentaAdmin(admin.ModelAdmin):
+    list_display  = ['id', 'cliente', 'cajero', 'turno', 'fecha_emision', 'total', 'estado']
+    list_filter   = ['estado', 'fecha_emision', 'cajero']
+    search_fields = ['cliente__nombres', 'cliente__identificacion', 'id']
+    inlines       = [VentaDetalleInline, PagoVentaInline] # <--- Aquí se amarran las sub-tablas
+    readonly_fields = ['subtotal', 'iva', 'total', 'fecha_emision', 'cajero', 'turno']
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
     list_display  = ['id', 'nombres', 'identificacion', 'email', 'telefono', 'es_activo', 'creado_en']
