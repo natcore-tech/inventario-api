@@ -2,6 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
 
+from inventario.views.cliente import ClienteViewSet
 from inventario.views.health import health_check
 from inventario.views.auth import RegisterView, LogoutView
 from inventario.views.user import UserViewSet
@@ -22,9 +23,10 @@ router = DefaultRouter()
 router.register('users', UserViewSet, basename='user')
 router.register('categorias', CategoriaViewSet, basename='categoria')
 router.register('productos', ConjuntoVistasProducto, basename='producto')
-router.register('movimientos', MovimientoInventarioViewSet, basename='movimiento-inventario') 
-router.register('proveedores', ProveedorViewSet, basename='proveedor') 
+router.register('movimientos', MovimientoInventarioViewSet, basename='movimiento-inventario')  
+router.register('proveedores', ProveedorViewSet, basename='proveedor')  
 router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')
+router.register('clientes', ClienteViewSet, basename='cliente')  
 router.register('marcas', MarcaViewSet, basename='marca')
 router.register('unidades-medida', UnidadMedidaViewSet, basename='unidad-medida')
 router.register('ubicaciones', UbicacionFisicaViewSet, basename='ubicacion-fisica')

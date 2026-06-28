@@ -5,7 +5,8 @@ from inventario.models import (
     Producto, 
     MovimientoInventario, 
     Proveedor, 
-    OrdenCompra  
+    OrdenCompra,
+    Cliente  
 )
 
 
@@ -50,3 +51,12 @@ class OrdenCompraAdmin(admin.ModelAdmin):
     ordering      = ['-creado_en']
     
     filter_horizontal = ['productos']
+
+@admin.register(Cliente)
+class ClienteAdmin(admin.ModelAdmin):
+    list_display  = ['id', 'nombres', 'identificacion', 'email', 'telefono', 'es_activo', 'creado_en']
+    list_filter   = ['es_activo', 'creado_en']
+    search_fields = ['nombres', 'identificacion', 'email']
+    list_editable = ['es_activo']
+    ordering      = ['nombres']
+    readonly_fields = ['creado_en', 'actualizado_en']

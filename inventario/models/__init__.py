@@ -4,6 +4,7 @@ from .producto import Producto
 from .movimiento_inventario import MovimientoInventario
 from .proveedor import Proveedor
 from .orden_compra import OrdenCompra
+from .cliente import Cliente
 from .marca import Marca
 from .unidad_medida import UnidadMedida
 from .ubicacion_fisica import UbicacionFisica
@@ -12,4 +13,4 @@ from .stock_bodega import StockBodega
 from .traslado_bodega import TrasladoBodega
 from .traslado_bodega_detalle import TrasladoBodegaDetalle
 
-__all__ = ['Categoria', 'Producto', 'MovimientoInventario', 'Proveedor', 'OrdenCompra']
+__all__ = ['Categoria', 'Producto', 'MovimientoInventario', 'Proveedor', 'OrdenCompra', 'Cliente']
