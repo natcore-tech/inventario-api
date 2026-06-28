@@ -14,6 +14,9 @@ from inventario.views.orden_compra import OrdenCompraViewSet
 from inventario.views.marca import MarcaViewSet
 from inventario.views.unidad_medida import UnidadMedidaViewSet
 from inventario.views.ubicacion_fisica import UbicacionFisicaViewSet
+from inventario.views.bodega import BodegaViewSet
+from inventario.views.stock_bodega import StockBodegaViewSet
+from inventario.views.traslado_bodega import TrasladoBodegaViewSet
 
 router = DefaultRouter()
 router.register('users', UserViewSet, basename='user')
@@ -25,6 +28,9 @@ router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')
 router.register('marcas', MarcaViewSet, basename='marca')
 router.register('unidades-medida', UnidadMedidaViewSet, basename='unidad-medida')
 router.register('ubicaciones', UbicacionFisicaViewSet, basename='ubicacion-fisica')
+router.register('bodegas', BodegaViewSet, basename='bodega')
+router.register('stocks-bodegas', StockBodegaViewSet, basename='stock-bodega')
+router.register('traslados-bodegas', TrasladoBodegaViewSet, basename='traslado-bodega')
 
 urlpatterns = [
     path('health/', health_check),
