@@ -60,7 +60,6 @@ class OrdenCompraAdmin(admin.ModelAdmin):
     ordering      = ['-creado_en']
     
     inlines = [OrdenCompraDetalleInline]
-    filter_horizontal = ['productos']
 
 @admin.register(TurnoCaja)
 class TurnoCajaAdmin(admin.ModelAdmin):
@@ -88,6 +87,7 @@ class VentaAdmin(admin.ModelAdmin):
     search_fields = ['cliente__nombres', 'cliente__identificacion', 'id']
     inlines       = [VentaDetalleInline, PagoVentaInline]
     readonly_fields = ['subtotal', 'iva', 'total', 'fecha_emision', 'cajero', 'turno']
+
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
     list_display  = ['id', 'nombres', 'identificacion', 'email', 'telefono', 'es_activo', 'creado_en']

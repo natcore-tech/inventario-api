@@ -13,7 +13,8 @@ from .proveedor import SerializerProveedor
 from .orden_compra import SerializerOrdenCompra
 from .turno_caja import TurnoCajaSerializer
 from .venta import VentaSerializer
-from .cliente import SerializerCliente
+from .cliente import ClienteSerializer
+from .ajuste_inventario import AjusteInventarioSerializer
 from .marca import MarcaSerializer
 from .unidad_medida import UnidadMedidaSerializer
 from .ubicacion_fisica import UbicacionFisicaSerializer
