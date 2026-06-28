@@ -6,17 +6,18 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Count
 
+from inventario import permissions
 from inventario.models import Categoria
 from inventario.serializers.categoria import CategoriaSerializer
 from inventario.permissions import EsStaffOSoloLectura
 from inventario.filters import FiltroCategoria
 from inventario.pagination import StandardPagination
-
+from rest_framework import permissions 
 
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
-    permission_classes = [EsStaffOSoloLectura]
+    permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardPagination
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = FiltroCategoria
