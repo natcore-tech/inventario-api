@@ -8,3 +8,13 @@ from .turno_caja import TurnoCaja
 from .venta import Venta, VentaDetalle, PagoVenta
 
 __all__ = ['Categoria', 'Producto', 'MovimientoInventario', 'Proveedor', 'OrdenCompra', 'TurnoCaja', 'Venta', 'VentaDetalle', 'PagoVenta']
+from .cliente import Cliente
+from .marca import Marca
+from .unidad_medida import UnidadMedida
+from .ubicacion_fisica import UbicacionFisica
+from .bodega import Bodega
+from .stock_bodega import StockBodega
+from .traslado_bodega import TrasladoBodega
+from .traslado_bodega_detalle import TrasladoBodegaDetalle
+
+__all__ = ['Categoria', 'Producto', 'MovimientoInventario', 'Proveedor', 'OrdenCompra', 'Cliente']

@@ -10,6 +10,7 @@ from inventario.models import (
     Venta,
     VentaDetalle,
     PagoVenta
+    Cliente  
 )
 
 
@@ -82,3 +83,11 @@ class VentaAdmin(admin.ModelAdmin):
     search_fields = ['cliente__nombres', 'cliente__identificacion', 'id']
     inlines       = [VentaDetalleInline, PagoVentaInline] # <--- Aquí se amarran las sub-tablas
     readonly_fields = ['subtotal', 'iva', 'total', 'fecha_emision', 'cajero', 'turno']
+@admin.register(Cliente)
+class ClienteAdmin(admin.ModelAdmin):
+    list_display  = ['id', 'nombres', 'identificacion', 'email', 'telefono', 'es_activo', 'creado_en']
+    list_filter   = ['es_activo', 'creado_en']
+    search_fields = ['nombres', 'identificacion', 'email']
+    list_editable = ['es_activo']
+    ordering      = ['nombres']
+    readonly_fields = ['creado_en', 'actualizado_en']
