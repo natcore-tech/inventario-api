@@ -12,3 +12,4 @@ from .movimiento_inventario import SerializerMovimientoInventario
 from .proveedor import SerializerProveedor
 from .orden_compra import SerializerOrdenCompra
 from .turno_caja import TurnoCajaSerializer
+from .venta import VentaSerializer
