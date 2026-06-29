@@ -52,7 +52,7 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_HOST: "localhost" 
           DB_PORT: "5432"
-        run: uv run python manage.py test notas --verbosity=2
+        run: uv run python manage.py test inventario --verbosity=2
 
   # ── Job 2: Despliegue en servidor i3 ──
   deploy:
