@@ -1,30 +1,59 @@
-# Inventario API
+PROYECTO GESTIÓN DE INVENTARIO 
 
-Sistema backend robusto para la gestión de inventario académico, desarrollado con Django REST Framework y PostgreSQL.
+TITULO: STOCKMASTER 
 
-## 🚀 Instalación y Ejecución
+INTEGRANTES: 
+Mikaela Zurita 
+Elihu Navarrete 
+Michael Lidioma 
 
-1. Clonar el repositorio:
-   `git clone https://github.com/Michaelslj/lidioma_inventario_api.git`
-2. Instalar dependencias:
-   `pip install -r requirements.txt`
-3. Configurar variables de entorno (Base de datos):
-   *Asegúrate de tener tu base de datos PostgreSQL creada.*
-4. Ejecutar migraciones:
-   `python manage.py migrate`
-5. Iniciar servidor:
-   `python manage.py runserver`
+DESCRIPCIÓN DEL SISTEMA: 
+El sistema de gestión de inventario "Stockmaster" es un proyecto desarrollado con Django REST Frameworg que permitira rastrear, controlar y optimizar el stock de una empresa en tiempo real. Su objetivo es llevar las cuentas exactas de producto en el momento preciso, evitando la escazes y el exceso de mercancia que genere costos innecesarios.
 
-## 🔐 Autenticación
-El sistema utiliza JWT. Para acceder a los endpoints protegidos:
-1. Haz POST a `/api/token/` con tus credenciales.
-2. Usa el `access` token recibido en el Header: `Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgwNTQ5NzY5LCJpYXQiOjE3ODA1NDYxNjksImp0aSI6IjMzZTg4NWVmYTRlMzRiMmNiNjExODMxNmQ0N2NlNjBjIiwidXNlcl9pZCI6IjMiLCJ1c2VybmFtZSI6Im1pY2hhZWxzbGoiLCJlbWFpbCI6Im1pY2hhZWxzbGpAZ21haWwuY29tIiwiaXNfc3RhZmYiOnRydWV9.2OjJBjOZGaZUxEH5dsLiT0fuMXfV57bwJXFrm9hLrXA`
+INSTALACIÓN 
+1. Clonarse el repositorio 
+git clone https://github.com/natcore-tech/inventario-api.git
 
-## 📌 Endpoints Principales
-| Método | Endpoint | Descripción |
-| :--- | :--- | :--- |
-| POST | `/api/token/` | Obtener token de acceso |
-| GET | `/api/productos/` | Listar productos |
-| POST | `/api/movimientos/` | Registrar entrada/salida de stock |
-| ... | ... | ... |
+2. Creación del entorno virtual
+python -m venv venv
 
+WINDOWS 
+venv\Scripts\activate
+LINUX
+source venv\bin\activate
+
+3. Instalar dependencias 
+
+pip install requirements.txt
+
+4. Configuración de variables de entorno.
+
+Asegúrate de tener tu base de datos PostgreSQL creada con el nombre inventario_db.
+
+Crea el archivo .env y agrega esto:
+# Django
+SECRET_KEY=django-insecure-change-this-in-production
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+# PostgreSQL
+DB_NAME=inventario_db
+DB_USER= (tu usuario)
+DB_PASSWORD= (tu contraseña) 
+DB_HOST=localhost
+DB_PORT=5432
+
+# CORS
+CORS_ALLOW_ALL_ORIGINS=True
+
+5. Ejecución de migraciones
+
+uv python manage.py migrate
+
+6. Creación de superusuario 
+
+uv python manage.py createsuperuser
+
+7. Ejecución del servidor.
+
+uv python manage.py runserver

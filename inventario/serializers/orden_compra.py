@@ -7,7 +7,7 @@ class DetalleCompraSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = OrdenCompraDetalle
-        fields = ['id', 'producto', 'producto_nombre', 'cantidad', 'precio_costo']
+        fields = ['id', 'producto', 'producto_nombre', 'cantidad', 'precio_unitario_compra']
 
 # 2. Serializer principal para la Orden de Compra
 class SerializerOrdenCompra(serializers.ModelSerializer):
@@ -16,7 +16,7 @@ class SerializerOrdenCompra(serializers.ModelSerializer):
     proveedor_nombre = serializers.CharField(source='proveedor.nombre', read_only=True)
     
     # Usamos source='ordencompradetalle_set' para acceder a los detalles vinculados
-    detalles = DetalleCompraSerializer(source='ordencompradetalle_set', many=True, read_only=True)
+    detalles = DetalleCompraSerializer(many=True, read_only=True)
 
     class Meta:
         model = OrdenCompra

@@ -20,6 +20,10 @@ class VentaViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
+        
+        if getattr(self, "swagger_fake_view", False):
+            return Venta.objects.none()
+        
         if user.is_staff:
             return Venta.objects.all()
         return Venta.objects.filter(cajero=user)
