@@ -1,0 +1,88 @@
+name: CI/CD Stock Master
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  # ── Job 1: Pruebas en la nube de GitHub ──
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    # 1. Levantamos el Postgres temporal inyectando TUS secretos
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: ${{ secrets.DB_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.DB_NAME }}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.12 
+
+      - name: Install dependencies
+        run: uv sync
+
+      # 2. Django lee los mismos secretos para conectarse
+      - name: Run tests
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DEBUG: True
+          ALLOWED_HOSTS: "*"
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_HOST: "localhost" 
+          DB_PORT: "5432"
+        run: uv run python manage.py test notas --verbosity=2
+
+  # ── Job 2: Despliegue en servidor i3 ──
+  deploy:
+    name: Deploy to Local i3
+    needs: test 
+    runs-on: self-hosted 
+
+    steps:
+      - name: Deploy to Server
+        env:
+          DEPLOY_PATH: /opt/stock-master/inventario-api
+        run: |
+          set -e
+          echo "── 1. Actualizando código ──"
+          cd $DEPLOY_PATH
+          git fetch origin
+          # OJO: Si tu rama principal se llama "main", cambia "master" por "main" en la siguiente línea
+          git reset --hard origin/main
+
+          echo "── 2. Instalando dependencias ──"
+          uv sync --frozen
+
+          echo "── 3. Aplicando migraciones ──"
+          uv run python manage.py migrate --noinput
+
+          echo "── 4. Recolectando estáticos ──"
+          uv run python manage.py collectstatic --noinput --clear
+
+          echo "── 5. Reiniciando servicios ──"
+          sudo systemctl restart gunicorn-stock 
+          sudo systemctl restart nginx
+
+          echo "¡Despliegue local completado exitosamente!"
