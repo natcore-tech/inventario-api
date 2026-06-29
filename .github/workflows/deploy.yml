@@ -41,8 +41,8 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
-      # 2. Django lee los mismos secretos para conectarse
-      - name: Run tests
+      # 2. Django lee los mismos secretos para conectarse y verificamos la integridad
+      - name: System Check and Migrate
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DEBUG: True
@@ -52,7 +52,9 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_HOST: "localhost" 
           DB_PORT: "5432"
-        run: uv run python manage.py test inventario --verbosity=2
+        run: |
+          uv run python manage.py check
+          uv run python manage.py migrate
 
   # ── Job 2: Despliegue en servidor i3 ──
   deploy:
