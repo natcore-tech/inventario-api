@@ -26,6 +26,8 @@ from inventario.views.ubicacion_fisica import UbicacionFisicaViewSet
 from inventario.views.bodega import BodegaViewSet
 from inventario.views.stock_bodega import StockBodegaViewSet
 from inventario.views.traslado_bodega import TrasladoBodegaViewSet
+from inventario.views.promocion import PromocionViewSet
+from inventario.views.metodo_pago import MetodoPagoViewSet
 
 router = DefaultRouter()
 router.register('users', UserViewSet, basename='user')
@@ -34,11 +36,11 @@ router.register('productos', ConjuntoVistasProducto, basename='producto')
 router.register('movimientos', MovimientoInventarioViewSet, basename='movimiento-inventario')  
 router.register('proveedores', ProveedorViewSet, basename='proveedor')  
 router.register('ordenes-compra', OrdenCompraViewSet, basename='orden-compra')  
-router.register('ajustes-inventario', AjusteInventarioViewSet)
-router.register('numeros-serie', NumeroSerieViewSet)
-router.register('alertas-stock', AlertaStockMinimoViewSet)
-router.register('devoluciones', DevolucionClienteViewSet)
-router.register('cotizaciones', CotizacionViewSet)  
+router.register('ajustes-inventario', AjusteInventarioViewSet, basename='ajuste-inventario')
+router.register('numeros-serie', NumeroSerieViewSet, basename='numero-serie')
+router.register('alertas-stock', AlertaStockMinimoViewSet, basename='alerta-stock')
+router.register('devoluciones', DevolucionClienteViewSet, basename='devolucion')
+router.register('cotizaciones', CotizacionViewSet, basename='cotizacion')  
 router.register('turnos-caja', TurnoCajaViewSet, basename='turno-caja')  
 router.register('ventas', VentaViewSet, basename='venta')
 router.register('clientes', ClienteViewSet, basename='cliente')  
@@ -48,6 +50,8 @@ router.register('ubicaciones', UbicacionFisicaViewSet, basename='ubicacion-fisic
 router.register('bodegas', BodegaViewSet, basename='bodega')
 router.register('stocks-bodegas', StockBodegaViewSet, basename='stock-bodega')
 router.register('traslados-bodegas', TrasladoBodegaViewSet, basename='traslado-bodega')
+router.register('metodos-pago', MetodoPagoViewSet, basename='metodo-pago')
+router.register('promociones', PromocionViewSet, basename='promocion')
 
 urlpatterns = [
     path('health/', health_check),
