@@ -9,7 +9,7 @@ class UbicacionFisicaSerializer(serializers.ModelSerializer):
         fields = ['id', 'pasillo', 'estante', 'coordenada_exacta']
         read_only_fields = ['id', 'coordenada_exacta']
 
-    def get_coordenada_exacta(self, obj):
+    def get_coordenada_exacta(self, obj) -> str:
         return f"{obj.pasillo} - {obj.estante}"
 
     def validate(self, data):

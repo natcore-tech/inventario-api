@@ -37,14 +37,14 @@ class SerializerProducto(serializers.ModelSerializer):
         from inventario.models import Categoria
         self.fields['categoria_id'].queryset = Categoria.objects.filter(activa=True)
 
-    def get_precio_con_impuesto(self, obj):
+    def get_precio_con_impuesto(self, obj) -> float:
         # Manejo seguro por si la propiedad o método tampoco existe en tu modelo
         try:
             return obj.precio_con_impuesto
         except AttributeError:
             return float(obj.precio) * 1.15  # Cálculo rápido de IVA estándar local
 
-    def get_en_stock(self, obj):
+    def get_en_stock(self, obj) -> bool:
         try:
             return obj.en_stock
         except AttributeError:

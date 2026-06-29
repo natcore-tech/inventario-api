@@ -22,7 +22,7 @@ class ClienteSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id', 'total_compras', 'creado_en', 'actualizado_en']
 
-    def get_total_compras(self, obj):
+    def get_total_compras(self, obj) -> int:
         # Cuando exista el modelo Venta en la Tarea 4, contará automáticamente las facturas pagadas
         if hasattr(obj, 'venta_set'):
             return obj.venta_set.filter(estado='PAGADA').count()

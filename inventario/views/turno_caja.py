@@ -20,7 +20,10 @@ class TurnoCajaViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        # Filtro de seguridad: El staff/admin ve todo, el empleado común solo ve sus propios registros
+        
+        if getattr(self, "swagger_fake_view", False):
+            return TurnoCaja.objects.none()
+        
         if user.is_staff:
             return TurnoCaja.objects.all()
         return TurnoCaja.objects.filter(cajero=user)
