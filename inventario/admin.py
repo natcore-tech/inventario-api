@@ -1,10 +1,12 @@
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib import admin
 from inventario.models import (
     Categoria, Producto, MovimientoInventario, Proveedor, OrdenCompra, 
     OrdenCompraDetalle, TurnoCaja, Venta, VentaDetalle, PagoVenta, Cliente, 
     MetodoPago, Promocion, AjusteInventario, NumeroSerie, AlertaStockMinimo, 
     DevolucionCliente, Bodega, StockBodega, TrasladoBodega, TrasladoBodegaDetalle, 
-    Marca, UnidadMedida, UbicacionFisica, Cotizacion, CotizacionDetalle
+    Marca, UnidadMedida, UbicacionFisica, Cotizacion, CotizacionDetalle, UserProfile
 )
 
 
@@ -240,3 +242,17 @@ class DevolucionClienteAdmin(admin.ModelAdmin):
     list_filter   = ['estado_producto', 'fecha_devolucion']
     search_fields = ['producto__nombre', 'motivo']
     ordering      = ['-fecha_devolucion']
+
+
+class UserProfileInline(admin.StackedInline):
+    model               = UserProfile
+    can_delete          = False
+    verbose_name_plural = 'Profile'
+    fields              = ['avatar']
+
+
+class UserAdmin(BaseUserAdmin):
+    inlines = [UserProfileInline]    
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)    

@@ -6,9 +6,17 @@ from inventario.serializers.categoria import CategoriaSerializer
 
 class SerializerResumenProducto(serializers.ModelSerializer):
 
+    image_url = serializers.SerializerMethodField()
+
     class Meta:
         model  = Producto
-        fields = ['id', 'nombre', 'precio', 'stock', 'es_activo']
+        fields = ['id', 'nombre', 'precio', 'stock', 'es_activo', 'image_url']
+
+    def get_image_url(self, obj):
+        request = self.context.get('request')
+        if obj.image:
+            return request.build_absolute_uri(obj.image.url) if request else obj.image.url
+        return None
 
 
 class SerializerProducto(serializers.ModelSerializer):
@@ -20,6 +28,7 @@ class SerializerProducto(serializers.ModelSerializer):
     )
     precio_con_impuesto = serializers.SerializerMethodField()
     en_stock       = serializers.SerializerMethodField()
+    image_url      = serializers.SerializerMethodField()
 
     class Meta:
         model  = Producto
@@ -29,6 +38,7 @@ class SerializerProducto(serializers.ModelSerializer):
             'precio', 'precio_con_impuesto',
             'stock', 'en_stock', 'es_activo',
             'categoria', 'categoria_id',
+            'image', 'image_url'
         ]
         read_only_fields = ['id']
 
@@ -59,3 +69,12 @@ class SerializerProducto(serializers.ModelSerializer):
         if value < 0:
             raise serializers.ValidationError('El stock no puede ser negativo.')
         return value
+
+    def validate_image(self, value):
+        max_size    = 2 * 1024 * 1024  # 2 MB
+        valid_types = ['image/jpeg', 'image/png', 'image/webp']
+        if value and value.size > max_size:
+            raise serializers.ValidationError('Image size must not exceed 2 MB.')
+        if value and value.content_type not in valid_types:
+            raise serializers.ValidationError('Only JPEG, PNG, and WebP images are allowed.')
+        return value    

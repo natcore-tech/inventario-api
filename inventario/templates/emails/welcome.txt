@@ -1,0 +1,8 @@
+¡Bienvenido a Inventario Api, {{ username }}!
+
+Tu cuenta ha sido creada exitosamente con el correo {{ email }}.
+
+Ya puedes explorar nuestros productos y realizar pedidos.
+
+---
+Este es un correo automático, por favor no respondas.
