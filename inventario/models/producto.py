@@ -1,5 +1,12 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from pathlib import Path
+import uuid
+
+
+def product_image_path(instance, filename):
+    ext = Path(filename).suffix.lower()
+    return f'products/{uuid.uuid4()}{ext}'
 
 class Producto(models.Model):
     categoria = models.ForeignKey(
@@ -36,6 +43,11 @@ class Producto(models.Model):
     creado_en = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Fecha de Registro'
+    )
+    image = models.ImageField(
+        upload_to=product_image_path, 
+        blank=True,
+        null=True
     )
 
     class Meta:

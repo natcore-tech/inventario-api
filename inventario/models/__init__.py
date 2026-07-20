@@ -25,6 +25,7 @@ from .stock_bodega import StockBodega
 from .traslado_bodega import TrasladoBodega
 from .traslado_bodega_detalle import TrasladoBodegaDetalle
 from .cotizacion import Cotizacion, CotizacionDetalle
+from .profile import UserProfile
 
 __all__ = ['Categoria', 'Producto', 'MovimientoInventario', 
            'Proveedor', 'OrdenCompra', 'OrdenCompraDetalle',
@@ -34,7 +35,7 @@ __all__ = ['Categoria', 'Producto', 'MovimientoInventario',
            'DevolucionCliente', 'Bodega', 'StockBodega', 
            'TrasladoBodega', 'TrasladoBodegaDetalle',
            'Promocion', 'Cliente', 'Marca', 'UnidadMedida',
-           'UbicacionFisica',]
+           'UbicacionFisica','UserProfile']
 
 
 
