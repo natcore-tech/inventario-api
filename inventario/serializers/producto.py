@@ -12,11 +12,6 @@ class SerializerResumenProducto(serializers.ModelSerializer):
         model  = Producto
         fields = ['id', 'nombre', 'precio', 'stock', 'es_activo', 'image_url']
 
-    def get_image_url(self, obj):
-        request = self.context.get('request')
-        if obj.image:
-            return request.build_absolute_uri(obj.image.url) if request else obj.image.url
-        return None
 
 
 class SerializerProducto(serializers.ModelSerializer):
@@ -78,3 +73,9 @@ class SerializerProducto(serializers.ModelSerializer):
         if value and value.content_type not in valid_types:
             raise serializers.ValidationError('Only JPEG, PNG, and WebP images are allowed.')
         return value    
+    
+    def get_image_url(self, obj):
+        request = self.context.get('request')
+        if obj.image:
+            return request.build_absolute_uri(obj.image.url) if request else obj.image.url
+        return None
