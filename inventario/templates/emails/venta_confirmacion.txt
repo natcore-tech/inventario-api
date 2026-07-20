@@ -1,0 +1,13 @@
+Confirmación de venta #{{ venta_id }}
+
+Hola {{ username }}, hemos procesado tu compra correctamente.
+
+Productos:
+{% for item in items %}- {{ item.product_name }}: {{ item.quantity }} x ${{ item.unit_price }} = ${{ item.subtotal }}
+{% endfor %}
+Total: ${{ total }}
+Estado: {{ estado }}
+
+Venta registrada el {{ fecha }}.
+---
+Este es un correo automático.

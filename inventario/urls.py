@@ -1,3 +1,5 @@
+from inventario.views.auth import PasswordResetConfirmView
+from inventario.views.auth import PasswordResetRequestView
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
@@ -53,13 +55,18 @@ router.register('traslados-bodegas', TrasladoBodegaViewSet, basename='traslado-b
 router.register('metodos-pago', MetodoPagoViewSet, basename='metodo-pago')
 router.register('promociones', PromocionViewSet, basename='promocion')
 
+from inventario.views.email import SendNotificationView
+
 urlpatterns = [
     path('health/', health_check),
     path('auth/register/', RegisterView.as_view()),
     path('auth/login/', CustomTokenView.as_view()),
     path('auth/token/refresh/', TokenRefreshView.as_view()),
+    path('auth/password-reset/',         PasswordResetRequestView.as_view(), name='auth-password-reset'),       
+    path('auth/password-reset/confirm/', PasswordResetConfirmView.as_view(), name='auth-password-reset-confirm'), 
     path('auth/token/verify/', TokenVerifyView.as_view()),
     path('auth/logout/', LogoutView.as_view()),
+    path('emails/send/', SendNotificationView.as_view(), name='email-send-notification'),
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     path('docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('', include(router.urls)),

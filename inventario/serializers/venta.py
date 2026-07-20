@@ -127,4 +127,14 @@ class VentaSerializer(serializers.ModelSerializer):
         for prod in productos_a_restar:
             prod.save() # Aquí se efectúa físicamente la resta del stock
 
+        # Enviar correo de confirmación de forma silenciosa
+        if venta.cliente.email:
+            try:
+                from inventario.services.email import send_venta_confirmation_email
+                send_venta_confirmation_email(venta)
+            except Exception as e:
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.exception('Error enviando confirmación de venta #%s', venta.id)
+
         return venta
