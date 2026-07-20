@@ -12,7 +12,8 @@ class CotizacionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cotizacion
-        fields = ['proveedor', 'codigo_cotizacion', 'fecha_validez', 'total_propuesto', 'detalles']
+        fields = ['id', 'proveedor', 'codigo_cotizacion', 'fecha_emision', 'fecha_validez', 'total_propuesto', 'detalles']
+        read_only_fields = ['id', 'fecha_emision']
 
     def create(self, validated_data):
         detalles_data = validated_data.pop('detalles')

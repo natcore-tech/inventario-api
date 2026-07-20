@@ -22,7 +22,6 @@ class SerializerOrdenCompra(serializers.ModelSerializer):
         model = OrdenCompra
         fields = [
             'id', 
-            'codigo_orden', 
             'proveedor', 
             'proveedor_nombre', 
             'usuario', 
