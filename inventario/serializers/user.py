@@ -63,8 +63,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'avatar','avatar_url']
-        read_only_fields = ['id']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'avatar','avatar_url', 'is_staff']
+        read_only_fields = ['id', 'is_staff']
 
     def validate_email(self, value):
         request = self.context.get('request')
