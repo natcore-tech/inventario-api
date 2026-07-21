@@ -59,6 +59,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     avatar_url = serializers.SerializerMethodField()
 
+    avatar = serializers.ImageField(source='profile.avatar', required=False)
+
     class Meta:
         model  = User
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'avatar','avatar_url']
