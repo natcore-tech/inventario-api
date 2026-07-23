@@ -63,9 +63,9 @@ class ConjuntoVistasProducto(viewsets.ModelViewSet):
         page = self.paginate_queryset(qs)
         if page is not None:
             return self.get_paginated_response(
-                SerializerResumenProducto(page, many=True).data
+                SerializerResumenProducto(page, many=True, context={'request': request}).data
             )
-        return Response(SerializerResumenProducto(qs, many=True).data)
+        return Response(SerializerResumenProducto(qs, many=True, context={'request': request}).data)
 
     @action(
         detail=False,
